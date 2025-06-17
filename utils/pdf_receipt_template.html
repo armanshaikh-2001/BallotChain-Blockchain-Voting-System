@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BallotChain – Voting Receipt</title>
+    <style>
+        :root {
+            --primary: #005C97;
+            --accent: #38a1db;
+            --background: #f4f7fb;
+            --card-bg: #ffffff;
+            --text-dark: #333;
+            --text-light: #666;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            margin: 0;
+            padding: 40px;
+            color: var(--text-dark);
+        }
+
+        .receipt-card {
+            max-width: 700px;
+            margin: auto;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 40px;
+            border-left: 8px solid var(--primary);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .receipt-title {
+            font-size: 22px;
+            color: var(--accent);
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        .receipt-details {
+            margin-top: 30px;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            background-color: #fafafa;
+        }
+
+        .detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .detail:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .value {
+            color: var(--text-light);
+            max-width: 60%;
+            word-wrap: break-word;
+            text-align: right;
+        }
+
+        .qr-code {
+            text-align: center;
+            margin: 40px 0 10px 0;
+        }
+
+        .qr-code img {
+            width: 180px;
+            height: 180px;
+            border: 4px solid var(--accent);
+            border-radius: var(--border-radius);
+        }
+
+        .qr-code p {
+            font-size: 13px;
+            margin-top: 10px;
+            color: var(--text-light);
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt-card">
+        <div class="header">
+            <div class="logo">BallotChain</div>
+            <div class="receipt-title">Voting Receipt</div>
+            <div class="subtitle">Blockchain-Verified Voting Confirmation</div>
+        </div>
+
+        <div class="receipt-details">
+            <div class="detail">
+                <div class="label">Voter ID:</div>
+                <div class="value">{{ voter_id }}</div>
+            </div>
+            <div class="detail">
+                <div class="label">Voter Name:</div>
+                <div class="value">{{ voter_name }}</div>
+            </div>
+            <div class="detail">
+                <div class="label">Candidate:</div>
+                <div class="value">{{ candidate_name }}</div>
+            </div>
+            <div class="detail">
+                <div class="label">Party:</div>
+                <div class="value">{{ candidate_party }}</div>
+            </div>
+            <div class="detail">
+                <div class="label">Timestamp:</div>
+                <div class="value">{{ timestamp }}</div>
+            </div>
+            <div class="detail">
+                <div class="label">Block Hash:</div>
+                <div class="value">{{ block_hash }}</div>
+            </div>
+        </div>
+
+        <div class="qr-code">
+            <img src="{{ qr_code }}" alt="QR Code">
+            <p>Scan to verify your vote on the blockchain</p>
+        </div>
+
+        <div class="footer">
+            This receipt is your proof of voting. Keep it secure.<br>
+            &copy; 2025 BallotChain – Secure, Transparent, Tamper-Proof
+        </div>
+    </div>
+</body>
+</html>

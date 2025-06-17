@@ -1,0 +1,504 @@
+{
+    "voters": [
+        {
+            "id": "V001",
+            "name": "Alice Johnson",
+            "has_voted": false
+        },
+        {
+            "id": "V002",
+            "name": "Bob Williams",
+            "has_voted": false
+        },
+        {
+            "id": "V004",
+            "name": "Arman",
+            "has_voted": true
+        },
+        {
+            "id": "V003",
+            "name": "Rajeshwari",
+            "has_voted": false
+        },
+        {
+            "id": "V006",
+            "name": "Tharun Babu",
+            "has_voted": false
+        },
+        {
+            "id": "V007",
+            "name": "Keerthana",
+            "has_voted": false
+        },
+        {
+            "id": "V008",
+            "name": "Nagarjuna Reddy",
+            "has_voted": true
+        },
+        {
+            "id": "V009",
+            "name": "Priya Menon",
+            "has_voted": false
+        },
+        {
+            "id": "V010",
+            "name": "Mohan Das",
+            "has_voted": false
+        },
+        {
+            "id": "V011",
+            "name": "Sowmya Rajan",
+            "has_voted": false
+        },
+        {
+            "id": "V012",
+            "name": "Ajith Kumar",
+            "has_voted": false
+        },
+        {
+            "id": "V013",
+            "name": "Sneha Ravi",
+            "has_voted": false
+        },
+        {
+            "id": "V014",
+            "name": "Karthikeyan",
+            "has_voted": false
+        },
+        {
+            "id": "V015",
+            "name": "Bhavana",
+            "has_voted": false
+        },
+        {
+            "id": "V016",
+            "name": "Venkatesh",
+            "has_voted": false
+        },
+        {
+            "id": "V017",
+            "name": "Ramya Suresh",
+            "has_voted": false
+        },
+        {
+            "id": "V018",
+            "name": "Shiva Prasad",
+            "has_voted": false
+        },
+        {
+            "id": "V019",
+            "name": "Anitha Devi",
+            "has_voted": false
+        },
+        {
+            "id": "V020",
+            "name": "Gokul Raj",
+            "has_voted": false
+        },
+        {
+            "id": "V021",
+            "name": "Malathi",
+            "has_voted": false
+        },
+        {
+            "id": "V022",
+            "name": "Yogesh Hegde",
+            "has_voted": false
+        },
+        {
+            "id": "V023",
+            "name": "Revathi Nair",
+            "has_voted": false
+        },
+        {
+            "id": "V024",
+            "name": "Manjunath",
+            "has_voted": false
+        },
+        {
+            "id": "V025",
+            "name": "Divya Sekar",
+            "has_voted": false
+        },
+        {
+            "id": "V026",
+            "name": "Harish Reddy",
+            "has_voted": false
+        },
+        {
+            "id": "V027",
+            "name": "Lekshmi Amma",
+            "has_voted": false
+        },
+        {
+            "id": "V028",
+            "name": "Raghavendra",
+            "has_voted": false
+        },
+        {
+            "id": "V029",
+            "name": "Sujatha",
+            "has_voted": false
+        },
+        {
+            "id": "V030",
+            "name": "Vijay Shankar",
+            "has_voted": false
+        },
+        {
+            "id": "V031",
+            "name": "Pavithra",
+            "has_voted": false
+        },
+        {
+            "id": "V032",
+            "name": "Satish Babu",
+            "has_voted": false
+        },
+        {
+            "id": "V033",
+            "name": "Nivedha",
+            "has_voted": false
+        },
+        {
+            "id": "V034",
+            "name": "Mahesh K",
+            "has_voted": false
+        },
+        {
+            "id": "V035",
+            "name": "Bindhu",
+            "has_voted": false
+        },
+        {
+            "id": "V036",
+            "name": "Shankar R",
+            "has_voted": false
+        },
+        {
+            "id": "V037",
+            "name": "Parvathi",
+            "has_voted": false
+        },
+        {
+            "id": "V038",
+            "name": "Ravi Teja",
+            "has_voted": false
+        },
+        {
+            "id": "V039",
+            "name": "Sangeetha",
+            "has_voted": false
+        },
+        {
+            "id": "V040",
+            "name": "Ramesh Kumar",
+            "has_voted": false
+        },
+        {
+            "id": "V041",
+            "name": "Kavya Reddy",
+            "has_voted": false
+        },
+        {
+            "id": "V042",
+            "name": "Surya Narayanan",
+            "has_voted": false
+        },
+        {
+            "id": "V043",
+            "name": "Lavanya",
+            "has_voted": false
+        },
+        {
+            "id": "V044",
+            "name": "Dinesh",
+            "has_voted": false
+        },
+        {
+            "id": "V045",
+            "name": "Sruthi",
+            "has_voted": false
+        },
+        {
+            "id": "V046",
+            "name": "Ajay Dev",
+            "has_voted": false
+        },
+        {
+            "id": "V047",
+            "name": "Chitra",
+            "has_voted": false
+        },
+        {
+            "id": "V048",
+            "name": "Rohit",
+            "has_voted": false
+        },
+        {
+            "id": "V049",
+            "name": "Gayathri",
+            "has_voted": false
+        },
+        {
+            "id": "V050",
+            "name": "Murali Krishna",
+            "has_voted": false
+        },
+        {
+            "id": "V051",
+            "name": "Sandhya",
+            "has_voted": false
+        },
+        {
+            "id": "V052",
+            "name": "Sharath",
+            "has_voted": false
+        },
+        {
+            "id": "V053",
+            "name": "Nandhini",
+            "has_voted": false
+        },
+        {
+            "id": "V054",
+            "name": "Vivek",
+            "has_voted": false
+        },
+        {
+            "id": "V055",
+            "name": "Aishwarya",
+            "has_voted": false
+        },
+        {
+            "id": "V056",
+            "name": "Kiran Kumar",
+            "has_voted": false
+        },
+        {
+            "id": "V057",
+            "name": "Nithya",
+            "has_voted": false
+        },
+        {
+            "id": "V058",
+            "name": "Ashok",
+            "has_voted": false
+        },
+        {
+            "id": "V059",
+            "name": "Sruthi Krishna",
+            "has_voted": false
+        },
+        {
+            "id": "V060",
+            "name": "Mani",
+            "has_voted": false
+        },
+        {
+            "id": "V061",
+            "name": "Reshma",
+            "has_voted": false
+        },
+        {
+            "id": "V062",
+            "name": "Santosh",
+            "has_voted": false
+        },
+        {
+            "id": "V063",
+            "name": "Archana",
+            "has_voted": false
+        },
+        {
+            "id": "V064",
+            "name": "Bharath",
+            "has_voted": false
+        },
+        {
+            "id": "V065",
+            "name": "Shalini",
+            "has_voted": false
+        },
+        {
+            "id": "V066",
+            "name": "Krishna Mohan",
+            "has_voted": false
+        },
+        {
+            "id": "V067",
+            "name": "Lalitha",
+            "has_voted": false
+        },
+        {
+            "id": "V068",
+            "name": "Prem Kumar",
+            "has_voted": false
+        },
+        {
+            "id": "V069",
+            "name": "Harini",
+            "has_voted": false
+        },
+        {
+            "id": "V070",
+            "name": "Vishnu",
+            "has_voted": false
+        },
+        {
+            "id": "V071",
+            "name": "Rithika",
+            "has_voted": false
+        },
+        {
+            "id": "V072",
+            "name": "Kishore",
+            "has_voted": false
+        },
+        {
+            "id": "V073",
+            "name": "Anjali",
+            "has_voted": false
+        },
+        {
+            "id": "V074",
+            "name": "Deva",
+            "has_voted": false
+        },
+        {
+            "id": "V075",
+            "name": "Anusha",
+            "has_voted": false
+        },
+        {
+            "id": "V076",
+            "name": "Ganesh",
+            "has_voted": false
+        },
+        {
+            "id": "V077",
+            "name": "Sowmiya",
+            "has_voted": false
+        },
+        {
+            "id": "V078",
+            "name": "Sudhakar",
+            "has_voted": false
+        },
+        {
+            "id": "V079",
+            "name": "Indu",
+            "has_voted": false
+        },
+        {
+            "id": "V080",
+            "name": "Raghu",
+            "has_voted": false
+        },
+        {
+            "id": "V081",
+            "name": "Veena",
+            "has_voted": false
+        },
+        {
+            "id": "V082",
+            "name": "Chandru",
+            "has_voted": false
+        },
+        {
+            "id": "V083",
+            "name": "Divyashree",
+            "has_voted": false
+        },
+        {
+            "id": "V084",
+            "name": "Rajeev",
+            "has_voted": false
+        },
+        {
+            "id": "V085",
+            "name": "Athira",
+            "has_voted": false
+        },
+        {
+            "id": "V086",
+            "name": "Muralidhar",
+            "has_voted": false
+        },
+        {
+            "id": "V087",
+            "name": "Sharvani",
+            "has_voted": false
+        },
+        {
+            "id": "V088",
+            "name": "Yuvan",
+            "has_voted": false
+        },
+        {
+            "id": "V089",
+            "name": "Tara",
+            "has_voted": false
+        },
+        {
+            "id": "V090",
+            "name": "Lokesh",
+            "has_voted": false
+        },
+        {
+            "id": "V091",
+            "name": "Sneha",
+            "has_voted": false
+        },
+        {
+            "id": "V092",
+            "name": "Chiranjeevi",
+            "has_voted": false
+        },
+        {
+            "id": "V093",
+            "name": "Ramani",
+            "has_voted": false
+        },
+        {
+            "id": "V094",
+            "name": "Siddarth",
+            "has_voted": false
+        },
+        {
+            "id": "V095",
+            "name": "Harsha",
+            "has_voted": false
+        },
+        {
+            "id": "V096",
+            "name": "Anagha",
+            "has_voted": false
+        },
+        {
+            "id": "V097",
+            "name": "Jagadeesh",
+            "has_voted": false
+        },
+        {
+            "id": "V098",
+            "name": "Vani",
+            "has_voted": false
+        },
+        {
+            "id": "V099",
+            "name": "Krishna Priya",
+            "has_voted": false
+        },
+        {
+            "id": "V100",
+            "name": "Madhavan",
+            "has_voted": false
+        },
+        {
+            "id": "V105",
+            "name": "mukesh",
+            "has_voted": false
+        }
+    ]
+}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Blockchain Explorer{% endblock %}
+
+{% block content %}
+<div class="blockchain-explorer">
+    <h2>Blockchain Explorer</h2>
+    <p>Total Blocks: {{ blockchain|length }}</p>
+    
+    <div class="blocks-container">
+        {% for block in blockchain %}
+        <div class="block">
+            <div class="block-header">
+                <span class="block-index">Block #{{ block.index }}</span>
+                <span class="block-hash">{{ block.hash[:16] }}...</span>
+            </div>
+            <div class="block-details">
+                <div class="detail">
+                    <span class="label">Timestamp:</span>
+                    <span class="value">{{ block.timestamp }}</span>
+                </div>
+                <div class="detail">
+                    <span class="label">Voter Token:</span>
+                    <span class="value">{{ block.voter_token[:16] }}...</span>
+                </div>
+                <div class="detail">
+                    <span class="label">Candidate ID:</span>
+                    <span class="value">{{ block.candidate_id }}</span>
+                </div>
+                <div class="detail">
+                    <span class="label">Previous Hash:</span>
+                    <span class="value">{{ block.previous_hash[:16] }}...</span>
+                </div>
+                <div class="detail">
+                    <span class="label">Nonce:</span>
+                    <span class="value">{{ block.nonce }}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

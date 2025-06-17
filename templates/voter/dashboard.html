@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Voter Dashboard{% endblock %}
+
+{% block content %}
+<div class="voter-dashboard">
+    <h2>Welcome, {{ session.get('voter_name', 'Voter') }}</h2>
+    
+    {% if election %}
+    <div class="election-info">
+        <h3>Current Election: {{ election.name }}</h3>
+        <p>Status: <span class="status-{{ election.status }}">{{ election.status|upper }}</span></p>
+        
+        {% if election.status == 'active' %}
+            <p>Time remaining: <span id="countdown"></span></p>
+            <a href="{{ url_for('voter.candidates') }}" class="btn btn-vote">Vote Now</a>
+        {% else %}
+            <p>Election is currently paused.</p>
+        {% endif %}
+    </div>
+    {% else %}
+    <div class="no-election">
+        <h3>No Active Election</h3>
+        <p>There is currently no active election. Please check back later.</p>
+    </div>
+    {% endif %}
+    
+    {% if session.get('receipt_data') %}
+    <div class="receipt-preview">
+        <h3>Your Voting Receipt</h3>
+        <p>You voted for: {{ session['receipt_data']['candidate_name'] }}</p>
+        <p>Timestamp: {{ session['receipt_data']['timestamp'] }}</p>
+        <a href="{{ url_for('voter.receipt') }}" class="btn btn-view">View Full Receipt</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{% if election and election.end_time %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const endTime = new Date("{{ election.end_time }}").getTime();
+    
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = endTime - now;
+        
+        if (distance < 0) {
+            document.getElementById('countdown').innerHTML = "Election ended";
+            return;
+        }
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        document.getElementById('countdown').innerHTML = 
+            `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+});
+</script>
+{% endif %}
+{% endblock %}

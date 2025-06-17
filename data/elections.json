@@ -1,0 +1,29 @@
+{
+    "current_election": null,
+    "past_elections": [
+        {
+            "name": "By Election",
+            "start_time": "2025-06-14 12:07:02.083129",
+            "end_time": "2025-06-15T12:06",
+            "status": "active"
+        },
+        {
+            "name": "By Election",
+            "start_time": "2025-06-14 12:19:11.885644",
+            "end_time": "2025-06-14T13:19",
+            "status": "active"
+        },
+        {
+            "name": "MP Election",
+            "start_time": "2025-06-14 13:13:00.096427",
+            "end_time": "2025-06-14T15:15",
+            "status": "active"
+        },
+        {
+            "name": "MLA Election",
+            "start_time": "2025-06-14T18:05:47.298809+05:30",
+            "end_time": "2025-06-15T20:05+05:30",
+            "status": "active"
+        }
+    ]
+}

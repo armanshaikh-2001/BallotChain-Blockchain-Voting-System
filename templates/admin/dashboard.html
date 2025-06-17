@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="admin-dashboard">
+    <h2>Election Dashboard</h2>
+
+    <div class="election-control">
+        {% if not election %}
+            <form method="POST" action="{{ url_for('admin.election_control') }}">
+                <input type="hidden" name="action" value="start">
+                <div class="form-group">
+                    <label for="election_name">Election Name</label>
+                    <input type="text" id="election_name" name="election_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="end_time">End Time</label>
+                    <input type="datetime-local" id="end_time" name="end_time" required>
+                </div>
+                <button type="submit" class="btn btn-start">Start Election</button>
+            </form>
+        {% else %}
+            <div class="election-status">
+                <h3>Current Election: {{ election.name }}</h3>
+                <p>Status: <span class="status-{{ election.status if election else 'inactive' }}">
+                    {{ (election.status if election else 'INACTIVE')|upper }}
+                </span></p>
+                <p>Start Time: {{ election.start_time }}</p>
+                <p>End Time: {{ election.end_time }}</p>
+
+                <div class="action-buttons">
+                    <form method="POST" action="{{ url_for('admin.election_control') }}" style="display: inline;">
+                        <input type="hidden" name="action" value="{% if election.status == 'active' %}pause{% else %}resume{% endif %}">
+                        <button type="submit" class="btn btn-{% if election.status == 'active' %}pause{% else %}resume{% endif %}">
+                            {% if election.status == 'active' %}Pause{% else %}Resume{% endif %}
+                        </button>
+                    </form>
+                    <form method="POST" action="{{ url_for('admin.election_control') }}" style="display: inline;">
+                        <input type="hidden" name="action" value="end">
+                        <button type="submit" class="btn btn-end">End Election</button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Total Voters</h3>
+            <p class="stat-value"><span class="counter" data-count="{{ total_voters }}">0</span></p>
+        </div>
+        <div class="stat-card">
+            <h3>Votes Cast</h3>
+            <p class="stat-value"><span class="counter" data-count="{{ voted }}">0</span></p>
+        </div>
+        <div class="stat-card">
+            <h3>Turnout</h3>
+            <p class="stat-value"><span class="counter" data-count="{{ turnout }}">0</span>%</p>
+        </div>
+    </div>
+
+    <div class="results-section">
+        <h3>Voter Participation</h3>
+        <div class="chart-mini-box" style="max-width: 400px; margin: 0 auto; padding: 1rem; background: #fff; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <canvas id="participationChart"></canvas>
+        </div>
+    </div>
+
+    <div class="candidates-list">
+        {% for candidate in candidates %}
+        <div class="candidate-card">
+            <div class="candidate-info">
+                <div class="candidate-image">
+                <img src="{{ url_for('static', filename=candidate.image or 'images/default_candidate.png') }}"
+     alt="{{ candidate.name }}">
+                </div>
+                <div class="candidate-details">
+                    <h4>{{ candidate.name }}</h4>
+                    <p class="party">{{ candidate.party }}</p>
+                    <p class="votes">{{ candidate.votes }} votes ({{ candidate.percentage|round(2) }}%)</p>
+                </div>
+            </div>
+            <div class="candidate-actions">
+                <a href="{{ url_for('admin.modify_candidate', candidate_id=candidate.id) }}" class="btn btn-secondary">Modify</a>
+
+                <a href="{{ url_for('admin.delete_candidate', candidate_id=candidate.id) }}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="export-actions">
+        <a href="{{ url_for('admin.export_blockchain') }}" class="btn btn-export">Export Blockchain</a>
+        <a href="{{ url_for('admin.export_results_pdf') }}" class="btn btn-export">Export Results PDF</a>
+        <a href="{{ url_for('admin.verify_blockchain') }}" class="btn btn-verify">Verify Blockchain</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/chart.min.js') }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Animate counters
+    document.querySelectorAll('.counter').forEach(counter => {
+        const update = () => {
+            const target = +counter.getAttribute('data-count');
+            let count = 0;
+            const step = Math.ceil(target / 50);
+            const isPercent = counter.parentElement.innerText.includes('%');
+
+            const interval = setInterval(() => {
+                count += step;
+                if (count >= target) {
+                    count = target;
+                    clearInterval(interval);
+                }
+                counter.textContent = count;
+            }, 30);
+        };
+        update();
+    });
+
+    // Pie chart for participation
+    const ctxPie = document.getElementById('participationChart').getContext('2d');
+    const totalVoters = {{ total_voters }};
+    const voted = {{ voted }};
+    const unvoted = totalVoters - voted;
+
+    new Chart(ctxPie, {
+        type: 'pie',
+        data: {
+            labels: ['Voted', 'Not Voted'],
+            datasets: [{
+                data: [voted, unvoted],
+                backgroundColor: ['#00C49F', '#FF6B6B'],
+                borderColor: 'rgba(255, 255, 255, 0.6)',
+                borderWidth: 2
+
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#333',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            const total = voted + unvoted;
+                            const percentage = (context.parsed / total * 100).toFixed(1);
+                            return `${context.label}: ${context.parsed} (${percentage}%)`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

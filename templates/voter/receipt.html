@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Voting Receipt{% endblock %}
+
+{% block content %}
+<div class="receipt-container">
+    <h2>Your Voting Receipt</h2>
+    
+    <div class="receipt-card">
+        <div class="receipt-header">
+            <h3>BallotChain Voting Confirmation</h3>
+            <p>Transaction Verified on Blockchain</p>
+        </div>
+        
+        <div class="receipt-details">
+            <div class="detail">
+                <span class="label">Voter ID:</span>
+                <span class="value">{{ receipt.voter_id }}</span>
+            </div>
+            <div class="detail">
+                <span class="label">Candidate:</span>
+                <span class="value">{{ receipt.candidate_name }}</span>
+            </div>
+            <div class="detail">
+                <span class="label">Timestamp:</span>
+                <span class="value">{{ receipt.timestamp }}</span>
+            </div>
+            <div class="detail">
+                <span class="label">Block Hash:</span>
+                <span class="value">{{ receipt.block_hash[:16] }}...</span>
+            </div>
+        </div>
+        
+        <div class="qr-code">
+            <img src="{{ url_for('static', filename=receipt.qr_code.replace('static/', '')) }}" alt="QR Code">
+            <p>Scan to verify your vote</p>
+        </div>
+        
+        <div class="receipt-actions">
+            <a href="{{ url_for('static', filename=receipt.receipt_path.replace('static/', '')) }}" download class="btn btn-download">Download PDF Receipt</a>
+            <a href="{{ url_for('voter.dashboard') }}" class="btn btn-return">Return to Dashboard</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="candidates-list">
+    <h2>Election Candidates</h2>
+    
+    {% if not is_active %}
+    <div class="alert alert-warning">
+        Voting is currently closed. You cannot cast votes at this time.
+    </div>
+    {% endif %}
+    
+    <div class="candidates-grid">
+        {% for candidate in candidates %}
+        <div class="candidate-card">
+            <div class="candidate-image">
+                <img src="{{ url_for('static', filename=candidate.image) }}"
+     onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/default_candidate.png') }}';"
+     alt="{{ candidate.name }}">
+
+            </div>
+            <div class="candidate-info">
+                <h3>{{ candidate.name }}</h3>
+                <p class="party">{{ candidate.party }}</p>
+                <div class="manifesto">
+                    <h4>Manifesto:</h4>
+                    <p>{{ candidate.manifesto or "No manifesto provided." }}</p>
+                </div>
+                
+                {% if is_active %}
+                <form method="POST" action="{{ url_for('voter.cast_vote') }}">
+                    <input type="hidden" name="candidate_id" value="{{ candidate.id }}">
+                    <button type="submit" class="btn btn-vote">Vote for {{ candidate.name.split(' ')[0] }}</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

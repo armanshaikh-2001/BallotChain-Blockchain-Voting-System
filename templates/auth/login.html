@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-box">
+        <h2>Login to BallotChain</h2>
+        
+        <div class="tabs">
+            <button class="tab-button active" data-tab="admin">Admin</button>
+            <button class="tab-button" data-tab="voter">Voter</button>
+        </div>
+        
+        <div class="tab-content active" id="admin-tab">
+            <form method="POST" action="{{ url_for('auth.login') }}">
+                <input type="hidden" name="form_type" value="admin">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
+        
+        <div class="tab-content" id="voter-tab">
+            <form method="POST" action="{{ url_for('auth.login') }}">
+                <input type="hidden" name="form_type" value="voter">
+                <div class="form-group">
+                    <label for="voter_id">Voter ID</label>
+                    <input type="text" id="voter_id" name="voter_id" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons and content
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked button and corresponding content
+            this.classList.add('active');
+            const tabId = this.getAttribute('data-tab') + '-tab';
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+});
+</script>
+{% endblock %}

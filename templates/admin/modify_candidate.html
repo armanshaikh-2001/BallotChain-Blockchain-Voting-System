@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% block title %}Modify Candidate{% endblock %}
+
+{% block content %}
+<h2 style="margin-bottom: 1rem;">Modify Candidate</h2>
+<form method="POST" enctype="multipart/form-data" class="modify-form">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ candidate.name }}" required>
+    </div>
+    <div class="form-group">
+        <label for="party">Party:</label>
+        <input type="text" id="party" name="party" value="{{ candidate.party }}" required>
+    </div>
+    <div class="form-group">
+        <label for="motto">Motto:</label>
+        <input type="text" id="motto" name="motto" value="{{ candidate.motto }}">
+    </div>
+    <div class="form-group">
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" accept="image/*">
+    </div>
+    <button type="submit" class="submit-button">Save Changes</button>
+</form>
+{% endblock %}
+
+{% block styles %}
+<style>
+    /* Reuse existing components */
+    .form-group {
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="file"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+    }
+
+    .modify-form {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 1rem;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+    }
+
+    .modify-form .tab-button {
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .modify-form .tab-button.active {
+        background-color: #0d6efd;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .modify-form .tab-button {
+        width: 100%;
+        text-align: center;
+        margin-top: 1.5rem;
+        padding: 12px 20px;
+        background-color: #0d6efd;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .modify-form .tab-button:hover {
+        background-color: #0b5ed7;
+    }
+
+    /* CHOOSE FILE BUTTON (custom file input) */
+    input[type="file"] {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        padding: 10px;
+        font-size: 1rem;
+        color: #495057;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+    input[type="file"]::file-selector-button {
+        margin-right: 10px;
+        padding: 8px 16px;
+        background-color: #6c757d;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    input[type="file"]::file-selector-button:hover {
+        background-color: #5a6268;
+    }
+
+    
+    .tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 1rem;
+    }
+    
+    .submit-button {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+        margin-top: 1.5rem;
+    }
+
+    .submit-button:hover {
+        background-color: #0b5ed7;
+    }
+
+    .tab-button {
+        padding: 10px 20px;
+        background-color: #e9ecef;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .tab-button.active {
+        background-color: #0d6efd;
+        color: white;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    .search-input {
+        padding: 10px;
+        width: 100%;
+        margin: 1rem 0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+    .pagination-controls {
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .pagination-controls button {
+        padding: 6px 12px;
+        margin: 0 4px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: white;
+        cursor: pointer;
+    }
+
+    .pagination-controls button.active {
+        background-color: #0d6efd;
+        color: white;
+        border-color: #0d6efd;
+    }
+</style>
+{% endblock %}

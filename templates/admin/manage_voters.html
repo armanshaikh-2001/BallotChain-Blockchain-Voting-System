@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Voters{% endblock %}
+
+{% block content %}
+<div class="voter-management">
+    <h2>Voter Management</h2>
+
+    <div class="tabs">
+        <button class="tab-button active" data-tab="import">Import Voters</button>
+        <button class="tab-button" data-tab="add">Add Voter</button>
+        <button class="tab-button" data-tab="list">Voter List</button>
+    </div>
+
+    <div class="tab-content active" id="import-tab">
+        <form method="POST" action="{{ url_for('admin.manage_voters') }}" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="voter_file">Import Voters (CSV or JSON)</label>
+                <input type="file" id="voter_file" name="voter_file" accept=".csv,.json" required>
+                <small>CSV format: id,name<br>JSON format: {"voters": [{"id":"V001","name":"John"}]}</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Import</button>
+        </form>
+    </div>
+
+    <div class="tab-content" id="add-tab">
+        <form method="POST" action="{{ url_for('admin.manage_voters') }}">
+            <div class="form-group">
+                <label for="voter_id">Voter ID</label>
+                <input type="text" id="voter_id" name="voter_id" required>
+            </div>
+            <div class="form-group">
+                <label for="voter_name">Voter Name (Optional)</label>
+                <input type="text" id="voter_name" name="voter_name">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Voter</button>
+        </form>
+    </div>
+
+    <div class="tab-content" id="list-tab">
+        <div class="voter-list">
+            <input type="text" id="voterSearch" placeholder="Search Voter ID or Name..." class="search-input">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Voter ID</th>
+                        <th>Name</th>
+                        <th>Voted</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="voterTableBody">
+                    {% for voter in voters %}
+                    <tr>
+                        <td>{{ voter.id }}</td>
+                        <td>{{ voter.name }}</td>
+                        <td>
+                            {% if voter.has_voted %}
+                                <span class="badge voted">Yes</span>
+                            {% else %}
+                                <span class="badge not-voted">No</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ url_for('admin.delete_voter', voter_id=voter.id) }}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div id="paginationControls" class="pagination-controls"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('voterSearch');
+    const rows = Array.from(document.querySelectorAll('#voterTableBody tr'));
+    const paginationControls = document.getElementById('paginationControls');
+    let currentPage = 1;
+    const rowsPerPage = 10;
+
+    function renderTable(filteredRows) {
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+
+        rows.forEach(row => row.style.display = 'none');
+        filteredRows.slice(start, end).forEach(row => row.style.display = '');
+
+        renderPagination(filteredRows.length);
+    }
+
+    function renderPagination(total) {
+        paginationControls.innerHTML = '';
+        const totalPages = Math.ceil(total / rowsPerPage);
+
+        if (totalPages <= 1) return;
+
+        const addButton = (text, page, isActive = false) => {
+            const btn = document.createElement('button');
+            btn.textContent = text;
+            btn.className = isActive ? 'page-btn active' : 'page-btn';
+            btn.addEventListener('click', () => {
+                currentPage = page;
+                filterRows();
+            });
+            paginationControls.appendChild(btn);
+        };
+
+        // Prev
+        if (currentPage > 1) addButton('Prev', currentPage - 1);
+
+        for (let i = 1; i <= totalPages; i++) {
+            addButton(i, i, i === currentPage);
+        }
+
+        // Next
+        if (currentPage < totalPages) addButton('Next', currentPage + 1);
+    }
+
+    function filterRows() {
+        const search = searchInput.value.toLowerCase();
+        const filtered = rows.filter(row =>
+            row.textContent.toLowerCase().includes(search)
+        );
+        if ((currentPage - 1) * rowsPerPage >= filtered.length) currentPage = 1;
+        renderTable(filtered);
+    }
+
+    searchInput.addEventListener('input', () => {
+        currentPage = 1;
+        filterRows();
+    });
+
+    filterRows();
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+
+            this.classList.add('active');
+            const tabId = this.getAttribute('data-tab') + '-tab';
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+});
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+.tab-button {
+    padding: 10px 20px;
+    background-color: #e9ecef;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.tab-button.active {
+    background-color: #0d6efd;
+    color: white;
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+.search-input {
+    padding: 10px;
+    width: 100%;
+    margin: 1rem 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.pagination-controls {
+    margin-top: 1rem;
+    text-align: center;
+}
+.pagination-controls button {
+    padding: 6px 12px;
+    margin: 0 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+}
+.pagination-controls button.active {
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0d6efd;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,28 @@
+{
+    "candidates": [
+        {
+            "id": "C1",
+            "name": "John Durairaj",
+            "party": "Independent",
+            "manifesto": "Transparency and accountability",
+            "image": "images/candidates/william-shakespeare-shakespeare-to-be-or-not-115629718480kdij02k1b.png",
+            "motto": ""
+        },
+        {
+            "id": "C2",
+            "name": "Edward",
+            "party": "Shaurangya",
+            "manifesto": "for family ",
+            "image": "images/candidates/IMG_20100101_090742_944.JPG",
+            "motto": ""
+        },
+        {
+            "id": "C3",
+            "name": "M K Stalin",
+            "party": "DMK Party",
+            "manifesto": "-",
+            "image": "images/candidates/00aa98dfda501042a6ed118618316e8a.jpg",
+            "motto": ""
+        }
+    ]
+}

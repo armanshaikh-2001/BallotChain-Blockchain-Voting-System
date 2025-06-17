@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Add Candidate{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Add New Candidate</h2>
+    
+    <form method="POST" action="{{ url_for('admin.add_candidate') }}" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="party">Party/Affiliation</label>
+            <input type="text" id="party" name="party">
+        </div>
+        
+        <div class="form-group">
+            <label for="manifesto">Manifesto</label>
+            <textarea id="manifesto" name="manifesto" rows="5"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="image">Candidate Image</label>
+            <input type="file" id="image" name="image" accept="image/*">
+            <small>Optional. Will use default image if not provided.</small>
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Add Candidate</button>
+            <a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

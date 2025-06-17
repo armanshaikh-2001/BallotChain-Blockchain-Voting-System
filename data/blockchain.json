@@ -1,0 +1,41 @@
+{
+    "chain": [
+        {
+            "index": 0,
+            "timestamp": "2025-06-14 11:55:19.870512",
+            "voter_token": "0",
+            "candidate_id": "0",
+            "previous_hash": "0",
+            "nonce": 0,
+            "hash": "e7042ac7d09c7bc41c8cfa5749e41858f6980643bc0db1a83cc793d3e24d3f77"
+        },
+        {
+            "index": 1,
+            "timestamp": "2025-06-14 18:26:48.753154",
+            "voter_token": "f4eae4ec4d37cbaa2ceabac1c5a990f1058902f0596f0519c4af82a52208891d",
+            "candidate_id": "C1",
+            "previous_hash": "e7042ac7d09c7bc41c8cfa5749e41858f6980643bc0db1a83cc793d3e24d3f77",
+            "nonce": 157767,
+            "hash": "000057e5cfd1c82710f9436eb1bc5714c8d4aa63fff6e2cd76cfb4115fec31a6"
+        },
+        {
+            "index": 2,
+            "timestamp": "2025-06-14 18:34:54.938390",
+            "voter_token": "109cd5d4eb19ba41efc3af307b2fac5f261c514cc01760b476d73fb8f6254ca9",
+            "candidate_id": "C1",
+            "previous_hash": "000057e5cfd1c82710f9436eb1bc5714c8d4aa63fff6e2cd76cfb4115fec31a6",
+            "nonce": 102151,
+            "hash": "00000143e5ee6640422c503510a815eb6ff08f2257601d8bc6fd2aa85e68a834"
+        },
+        {
+            "index": 3,
+            "timestamp": "2025-06-14 18:48:05.093299",
+            "voter_token": "2fc0db3dbf0b82909a4af96139606479e181017302e40132028707640d4c4a80",
+            "candidate_id": "C1",
+            "previous_hash": "00000143e5ee6640422c503510a815eb6ff08f2257601d8bc6fd2aa85e68a834",
+            "nonce": 21739,
+            "hash": "000093cb13cdefe68202edd14f5ceba360d319ab6cdd2ca2c8c30f1347010a31"
+        }
+    ],
+    "length": 4
+}
