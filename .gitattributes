@@ -1,2 +1,12 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Hide HTML and CSS files from language stats
+*.html linguist-generated=true
+*.css linguist-generated=true
+
+# Explicitly classify certain folders (optional, adjust to your structure)
+templates/* linguist-generated=true
+static/* linguist-language=JavaScript
+*.js linguist-language=JavaScript
+*.py linguist-language=Python
